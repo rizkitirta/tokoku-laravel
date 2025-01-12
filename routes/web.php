@@ -42,6 +42,12 @@ Route::get('/supplier/json', function () {
     return response()->json(['success' => true, 'data' => $supp]);
 });
 
+Route::get('/user/json/{total}', function ($total) {
+    $user = \App\Models\User::take($total)->get();
+
+    return response()->json(['success' => true, 'data' => $user]);
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
