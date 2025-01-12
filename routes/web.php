@@ -36,6 +36,12 @@ Route::get('/test', function () {
     return response()->json(['OK']);
 });
 
+Route::get('/supplier/json', function () {
+    $supp = \App\Models\Supplier::all();
+    
+    return response()->json(['success' => true, 'data' => $supp]);
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
